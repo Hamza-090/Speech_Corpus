@@ -47,8 +47,6 @@ The code-switched sentences contain manually defined switch-point word indices s
 ## Dataset
 
 The recording pipeline automatically creates:
-
-```text
 speaker_condition_sentence.wav
 
 Example:
@@ -152,14 +150,3 @@ python extract_features.py
 Result
 The corpus and acoustic-analysis pipeline were executed on real speech recordings.
 The resulting features.csv contains the measurements produced by the actual recordings, while the plots/ directory provides visual quality checks and condition-level comparisons.
-Connection to Later Projects
-Project 1 provides the labeled speech corpus used by Project 2 for ASR evaluation.
-The switch_point_word_index metadata is later used by Project 2 to investigate whether transcription errors occur near annotated language-switch boundaries.
-Project 3 and Project 4 build additional real-time speech-processing components on top of this work.
-
-Save with:
-
-```text
-Ctrl + S
-
-The README reflects the actual scope of Project 1 in your supplied document: labeled Hindi/English/code-switched recordings, feature extraction, plots, and comparison analysis.
