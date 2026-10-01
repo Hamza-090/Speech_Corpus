@@ -1,54 +1,3 @@
-# Multilingual & Code-Switched Speech Corpus and Acoustic Analysis
-
-## Overview
-
-This project builds a small labeled speech corpus containing:
-
-- Hindi speech
-- English speech
-- Hindi-English code-switched speech
-
-Each recording is stored as a WAV file and linked to metadata describing the speaker, language condition, sentence, and code-switch location.
-
-The corpus is then processed using a Python acoustic-analysis pipeline to extract speech features and generate visual quality-control plots.
-
-## Objective
-
-The goal is to create a structured speech dataset and analyze whether measurable acoustic characteristics differ between Hindi, English, and code-switched speech.
-
-The extracted features include:
-
-- Duration
-- Pitch / fundamental frequency (F0)
-- Energy
-- Speaking rate
-- MFCCs
-
-The project also generates waveform, spectrogram, and pitch visualizations.
-
-## Recording Conditions
-
-The recording script contains three conditions:
-
-### Hindi
-
-Five Hindi sentences.
-
-### English
-
-Five English sentences.
-
-### Code-switched
-
-Six Hindi-English code-switched sentences.
-
-The code-switched sentences contain manually defined switch-point word indices so that later projects can analyze ASR performance around language-switch boundaries.
-
-## Dataset
-
-The recording pipeline automatically creates:
-speaker_condition_sentence.wav
-
 Example:
 hamza_hi_s01.wav
 hamza_en_s01.wav
@@ -59,7 +8,8 @@ metadata.csv
 
 The current corpus contains 48 processed recordings.
 Pipeline
-flowchart TD
+    ```mermaid
+    flowchart TD
     A["Recording prompts"] --> B["Microphone recording"]
     B --> C["16 kHz WAV files"]
     C --> D["metadata.csv"]
@@ -76,6 +26,8 @@ flowchart TD
     H --> L
     I --> L
     J --> L
+    ```
+
 
 
 Tools
@@ -86,7 +38,7 @@ Tools
 - Matplotlib
 - SoundDevice
 - SoundFile
-Project Structure
+# Project Structure
 project1-speech-corpus/
 │
 ├── recordings/
