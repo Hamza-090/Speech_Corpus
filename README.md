@@ -1,44 +1,33 @@
-Example:
-hamza_hi_s01.wav
-hamza_en_s01.wav
-hamza_cs_s01.wav
+# Project 1 — Multilingual & Code-Switched Speech Corpus and Acoustic Analysis
 
-The metadata is stored in:
-metadata.csv
+## Overview
+This project builds a small, structured, labeled speech corpus containing Hindi speech, English speech, and Hindi-English code-switched speech. Each recording is stored as a `.wav` file and linked to a comprehensive metadata log detailing the speaker, language condition, sentence, and exact code-switch location. 
 
-The current corpus contains 48 processed recordings.
-Pipeline
-    ```mermaid
-    flowchart TD
-    A["Recording prompts"] --> B["Microphone recording"]
-    B --> C["16 kHz WAV files"]
-    C --> D["metadata.csv"]
-    C --> E["Librosa feature extraction"]
-    D --> E
-    E --> F["Pitch / F0"]
-    E --> G["Energy"]
-    E --> H["Speaking rate"]
-    E --> I["MFCCs"]
-    E --> J["Duration"]
-    E --> K["QC plots"]
-    F --> L["features.csv"]
-    G --> L
-    H --> L
-    I --> L
-    J --> L
-    ```
+The corpus is processed using a custom Python acoustic-analysis pipeline to extract core speech features and generate visual quality-control (QC) plots, establishing a foundation for analyzing acoustic characteristic differences across language conditions.
 
+## Objective
+The primary goal is to construct a highly organized speech dataset and determine whether measurable acoustic features differ significantly between Hindi, English, and code-switched speech. 
 
+Extracted acoustic features include:
+*   **Duration**
+*   **Pitch / Fundamental Frequency (F0)**
+*   **Energy**
+*   **Speaking Rate**
+*   **Mel-Frequency Cepstral Coefficients (MFCCs)**
 
-Tools
-- Python
-- NumPy
-- Pandas
-- Librosa
-- Matplotlib
-- SoundDevice
-- SoundFile
-# Project Structure
+## Dataset & Recording Conditions
+The current corpus contains **48 processed recordings**. The recording script encompasses three specific conditions:
+
+*   **Hindi:** 5 distinct Hindi sentences.
+*   **English:** 5 distinct English sentences.
+*   **Code-Switched (CS):** 6 Hindi-English code-switched sentences. The CS sentences contain manually defined switch-point word indices, enabling downstream analysis of Automatic Speech Recognition (ASR) performance specifically around language-switch boundaries.
+
+**File Naming Convention:**  
+Recordings are automatically saved and formatted as `speaker_condition_sentence.wav`.  
+*Examples:* `hamza_hi_s01.wav`, `hamza_en_s01.wav`, `hamza_cs_s01.wav`
+
+## Project Structure
+```text
 project1-speech-corpus/
 │
 ├── recordings/
@@ -55,50 +44,3 @@ project1-speech-corpus/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-
-Recording Pipeline
-record_session.py:
-1. Displays a sentence.
-2. Records a fixed-duration audio take.
-3. Plays the recording back.
-4. Allows the speaker to keep or redo the take.
-5. Saves the WAV file.
-6. Automatically records the corresponding metadata.
-Feature Extraction
-extract_features.py processes each recording and extracts acoustic measurements.
-The analysis uses a 16 kHz sampling rate and speech-oriented short-time analysis parameters.
-The pipeline also includes quality checks for silent recordings and pitch estimates occurring near the configured pitch floor.
-Outputs
-metadata.csv
-Contains:
-- filename
-- speaker ID
-- condition
-- sentence ID
-- sentence text
-- switch-point word index
-- notes
-features.csv
-Contains one row per successfully processed recording and the extracted acoustic measurements.
-plots/
-Contains:
-- Per-recording waveform plots
-- Spectrograms
-- Pitch tracks
-- Feature comparison plots across language conditions
-Reproducibility
-Create a virtual environment:
-python -m venv venv
-
-Activate it on Windows:
-venv\Scripts\activate
-
-Install dependencies:
-pip install -r requirements.txt
-
-Run the feature extraction pipeline:
-python extract_features.py
-
-Result
-The corpus and acoustic-analysis pipeline were executed on real speech recordings.
-The resulting features.csv contains the measurements produced by the actual recordings, while the plots/ directory provides visual quality checks and condition-level comparisons.
